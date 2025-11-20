@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 enum APIErrors: Error, LocalizedError {
     case invalidURL
     case invalidResponse
@@ -25,5 +23,4 @@ enum APIErrors: Error, LocalizedError {
         }
     }
 }
-
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var viewModel = FilmsViewModel()
-    
+    @State private var searchText = ""
     
     var body: some View {
         TabView{
@@ -26,11 +26,16 @@ struct ContentView: View {
                         EmptyView()
                     }
                 }
-                .navigationTitle("Books App")
+                .navigationTitle("Ghibili App")
                 .task {
                     await viewModel.fetchFilms()
                 }
+                .searchable(text: $searchText, prompt: "Search books")
+                .onChange(of: searchText) { newValue in
+                    viewModel.search(with: newValue)
+                }
             }
+            
             .tabItem{
                 Label("Browse", systemImage: "tv")
             }
@@ -40,7 +45,7 @@ struct ContentView: View {
             }
             
             .tabItem{
-                Label("Favorits", systemImage: "bookmark.fill")
+                Label("Favorite", systemImage: "bookmark.fill")
             }
         }
         .environment(viewModel)

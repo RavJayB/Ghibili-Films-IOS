@@ -10,3 +10,4 @@ import Foundation
 enum AppStorageKeys {
     static let favoriteFilms = "favoriteFilms"
 }
+
